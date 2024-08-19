@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwn2jxfm6mk7u"]
+
+[ext_resource type="Theme" uid="uid://ontc6b8pvhb0" path="res://resources/themes/standard.tres" id="1_6dsfs"]
+[ext_resource type="Script" path="res://scenes/content/knowledge/topic_item.gd" id="1_cs2oj"]
+[ext_resource type="Texture2D" uid="uid://cevjljx2ql7v6" path="res://resources/icons/visibility.png" id="3_frkxr"]
+[ext_resource type="Texture2D" uid="uid://cl2mnm37s8we1" path="res://resources/icons/visibility_off.png" id="4_pd4rr"]
+[ext_resource type="Texture2D" uid="uid://dihgigc72754b" path="res://resources/icons/copy.png" id="5_oogdi"]
+[ext_resource type="Texture2D" uid="uid://djxw84tvmdyxn" path="res://resources/icons/save.png" id="6_s5ur6"]
+[ext_resource type="Texture2D" uid="uid://dojg61s58n6sf" path="res://resources/icons/delete.png" id="7_d2ak0"]
+
+[node name="TopicItem" type="VBoxContainer"]
+theme = ExtResource("1_6dsfs")
+script = ExtResource("1_cs2oj")
+
+[node name="Header" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Labels" type="Label" parent="Header"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 2
+
+[node name="Show" type="Button" parent="Header"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_frkxr")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Hide" type="Button" parent="Header"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("4_pd4rr")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Content" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Topic" type="TextEdit" parent="Content"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Copy" type="Button" parent="Content/VBoxContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_oogdi")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Save" type="Button" parent="Content/VBoxContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_s5ur6")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Control" type="Control" parent="Content/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Delete" type="Button" parent="Content/VBoxContainer"]
+modulate = Color(1, 0.425788, 0.357085, 1)
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("7_d2ak0")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="Header/Show" to="." method="_on_show_pressed"]
+[connection signal="pressed" from="Header/Hide" to="." method="_on_hide_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/Copy" to="." method="_on_copy_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/Delete" to="." method="_on_delete_pressed"]

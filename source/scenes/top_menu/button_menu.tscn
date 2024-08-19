@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyu2h6xjamcy8"]
+
+[ext_resource type="Script" path="res://scenes/top_menu/button_menu.gd" id="1_8rg40"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6o7l2"]
+bg_color = Color(0.0352941, 0.145098, 0.231373, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0883256, 0.260956, 0.396681, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1c4y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vjoy"]
+bg_color = Color(0.0335965, 0.145199, 0.229994, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_884ck"]
+bg_color = Color(0.0954076, 0.276088, 0.418196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0f3i6"]
+bg_color = Color(0.0352941, 0.145098, 0.231373, 0)
+border_color = Color(0.0726388, 0.227114, 0.348482, 1)
+
+[node name="ButtonMenu" type="Button"]
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_6o7l2")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_o1c4y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4vjoy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_884ck")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0f3i6")
+text = "New"
+alignment = 0
+script = ExtResource("1_8rg40")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

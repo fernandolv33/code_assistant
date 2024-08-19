@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://5hpa17b3vk6f"]
+
+[ext_resource type="Theme" uid="uid://ontc6b8pvhb0" path="res://resources/themes/standard.tres" id="1_6rk6x"]
+[ext_resource type="Script" path="res://scenes/content/knowledge/knowledge.gd" id="1_j2giy"]
+
+[node name="knowledge" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6rk6x")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_j2giy")
+
+[node name="Columns" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Database" type="VBoxContainer" parent="Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Columns/Database"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Database"
+
+[node name="S" type="ScrollContainer" parent="Columns/Database"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="List" type="VBoxContainer" parent="Columns/Database/S"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="AddTopic" type="VBoxContainer" parent="Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Label2" type="Label" parent="Columns/AddTopic"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Add topic"
+
+[node name="NewLabels" type="LineEdit" parent="Columns/AddTopic"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "Enter tags here"
+
+[node name="NewTopic" type="TextEdit" parent="Columns/AddTopic"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Enter knowledge text here"
+wrap_mode = 1
+
+[node name="AddTopic" type="Button" parent="Columns/AddTopic"]
+layout_mode = 2
+text = "Add topic to knowledge base"
+
+[connection signal="pressed" from="Columns/AddTopic/AddTopic" to="." method="_on_add_topic_pressed"]

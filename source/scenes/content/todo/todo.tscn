@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=3 uid="uid://cttxailebs1js"]
+
+[ext_resource type="Theme" uid="uid://ontc6b8pvhb0" path="res://resources/themes/standard.tres" id="1_ddf3l"]
+[ext_resource type="Script" path="res://scenes/content/todo/todo.gd" id="1_w0qm8"]
+[ext_resource type="Script" path="res://scenes/content/todo/save_data_button.gd" id="2_l3lre"]
+[ext_resource type="Texture2D" uid="uid://djxw84tvmdyxn" path="res://resources/icons/save.png" id="3_y5ahe"]
+[ext_resource type="Texture2D" uid="uid://ecimy8byjd1q" path="res://resources/icons/refresh.png" id="5_jjmgb"]
+[ext_resource type="Texture2D" uid="uid://djrb32cwsn6h2" path="res://resources/icons/add.png" id="6_8omn5"]
+
+[node name="Todo" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ddf3l")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_w0qm8")
+
+[node name="Content" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Projects" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Content/Projects"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="Content/Projects/Header"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_y5ahe")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_l3lre")
+
+[node name="Label" type="Label" parent="Content/Projects/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Projects"
+
+[node name="Reload" type="Button" parent="Content/Projects/Header"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_jjmgb")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AddProject" type="HBoxContainer" parent="Content/Projects"]
+layout_mode = 2
+
+[node name="NewProject" type="LineEdit" parent="Content/Projects/AddProject"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Add project"
+
+[node name="AddProject" type="Button" parent="Content/Projects/AddProject"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_8omn5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="S" type="ScrollContainer" parent="Content/Projects"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Project" type="VBoxContainer" parent="Content/Projects/S"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="Tasks" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="Content/Tasks"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Content/Tasks/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "To do:"
+
+[node name="ProjectName" type="Label" parent="Content/Tasks/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+
+[node name="AddTask" type="HBoxContainer" parent="Content/Tasks"]
+layout_mode = 2
+
+[node name="NewTask" type="LineEdit" parent="Content/Tasks/AddTask"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Add to do"
+
+[node name="AddTask" type="Button" parent="Content/Tasks/AddTask"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_8omn5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="S" type="ScrollContainer" parent="Content/Tasks"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TodoList" type="VBoxContainer" parent="Content/Tasks/S"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="Content/Projects/Header/Save" to="Content/Projects/Header/Save" method="_on_pressed"]
+[connection signal="pressed" from="Content/Projects/Header/Reload" to="." method="load_data"]
+[connection signal="pressed" from="Content/Projects/AddProject/AddProject" to="." method="_on_add_project_pressed"]
+[connection signal="pressed" from="Content/Tasks/AddTask/AddTask" to="." method="_on_add_task_pressed"]

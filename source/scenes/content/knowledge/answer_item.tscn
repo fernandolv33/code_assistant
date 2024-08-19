@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://df3ekugc0uotr"]
+
+[ext_resource type="Theme" uid="uid://ontc6b8pvhb0" path="res://resources/themes/standard.tres" id="1_2vsvg"]
+[ext_resource type="Script" path="res://scenes/content/knowledge/answer_item.gd" id="1_pt1i7"]
+[ext_resource type="Texture2D" uid="uid://dihgigc72754b" path="res://resources/icons/copy.png" id="2_i1ue6"]
+[ext_resource type="FontFile" uid="uid://svrq5f4j3dd6" path="res://resources/fonts/opensans-italic.ttf" id="3_qidjo"]
+
+[node name="AnswerItem" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+offset_right = 155.0
+offset_bottom = 159.0
+theme = ExtResource("1_2vsvg")
+script = ExtResource("1_pt1i7")
+
+[node name="Ratio" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.768627)
+theme_override_fonts/font = ExtResource("3_qidjo")
+theme_override_font_sizes/font_size = 12
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Answer" type="TextEdit" parent="H"]
+custom_minimum_size = Vector2(100, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 2
+
+[node name="Copy" type="Button" parent="H"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_i1ue6")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="H/Copy" to="." method="_on_copy_pressed"]

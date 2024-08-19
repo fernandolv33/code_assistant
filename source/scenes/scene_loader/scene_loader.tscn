@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://2vyyx4e6uqgd"]
+
+[ext_resource type="Script" path="res://scenes/scene_loader/scene_loader.gd" id="1_5ijhj"]
+[ext_resource type="PackedScene" uid="uid://sv0vw8kmatfa" path="res://scenes/top_menu/top_menu.tscn" id="2_03dk7"]
+[ext_resource type="Script" path="res://scenes/scene_loader/music_track.gd" id="2_cgit4"]
+[ext_resource type="Script" path="res://scenes/scene_loader/sfx_track.gd" id="3_h6q8y"]
+[ext_resource type="Script" path="res://scenes/scene_loader/console.gd" id="5_mkgqd"]
+
+[node name="SceneLoader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_5ijhj")
+
+[node name="Loader" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1.7297e-08, 0.0301704, 0.0592726, 1)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Node"]
+autoplay = true
+script = ExtResource("2_cgit4")
+
+[node name="SFX" type="AudioStreamPlayer" parent="Node"]
+script = ExtResource("3_h6q8y")
+
+[node name="TopMenu" parent="." instance=ExtResource("2_03dk7")]
+layout_mode = 1
+
+[node name="Console" type="CanvasLayer" parent="."]
+script = ExtResource("5_mkgqd")
+
+[node name="Console" type="VBoxContainer" parent="Console"]
+modulate = Color(1, 1, 1, 0.643137)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Empty" type="Control" parent="Console/Console"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Message" type="ColorRect" parent="Console/Console"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.0253727, 0.123212, 0.193326, 1)
+
+[node name="M" type="MarginContainer" parent="Console/Console/Message"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="Text" type="Label" parent="Console/Console/Message/M"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "msg"
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Console"]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Console/Timer" to="Console" method="_on_timer_timeout"]

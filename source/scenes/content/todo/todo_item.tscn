@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnlwgenrkydki"]
+
+[ext_resource type="Theme" uid="uid://ontc6b8pvhb0" path="res://resources/themes/standard.tres" id="1_thqdh"]
+[ext_resource type="Script" path="res://scenes/content/todo/todo_item.gd" id="1_xk1np"]
+[ext_resource type="Texture2D" uid="uid://daa2l3f8gefdj" path="res://resources/icons/edit.png" id="3_4uvvb"]
+[ext_resource type="Texture2D" uid="uid://djxw84tvmdyxn" path="res://resources/icons/save.png" id="4_0r33j"]
+[ext_resource type="Texture2D" uid="uid://c6jthmbxu0c84" path="res://resources/icons/close.png" id="5_vtg4h"]
+[ext_resource type="Texture2D" uid="uid://dojg61s58n6sf" path="res://resources/icons/delete.png" id="6_k3frk"]
+[ext_resource type="Texture2D" uid="uid://bxkf7gioyudup" path="res://resources/icons/up.png" id="6_um73i"]
+[ext_resource type="Texture2D" uid="uid://b44ofk8h4tmws" path="res://resources/icons/down.png" id="7_svn86"]
+
+[node name="TodoItem" type="HBoxContainer"]
+theme = ExtResource("1_thqdh")
+theme_override_constants/separation = 4
+script = ExtResource("1_xk1np")
+
+[node name="Control2" type="Control" parent="."]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="Done" type="CheckBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ToDo" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 2
+
+[node name="ToDoEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Edit" type="Button" parent="."]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_4uvvb")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Save" type="Button" parent="."]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("4_0r33j")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Cancel" type="Button" parent="."]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_vtg4h")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Up" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_um73i")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Down" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("7_svn86")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Delete" type="Button" parent="."]
+modulate = Color(1, 0.427451, 0.356863, 1)
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_k3frk")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[connection signal="toggled" from="Done" to="." method="_on_done_toggled"]
+[connection signal="pressed" from="Edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Delete" to="." method="_on_delete_pressed"]
