@@ -53,7 +53,7 @@ func _on_add_project_pressed() -> void:
 	var ii = project_item.instantiate()
 	project_list.add_child(ii)
 	ii.init_item(new_project.text)
-	AppMaster.todo_data[new_project.text] = {}
+	AppMaster.todo_data[new_project.text] = []
 	AppMaster.save_todo()
 	new_project.text = ""
 
